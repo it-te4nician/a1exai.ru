@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AioHTTP против FastAPI: когда что выбирать — a1exai</title>
+<meta name="description" content="Честное сравнение двух async-фреймворков Python после продакшена на обоих: где нужен низкоуровневый контроль AioHTTP, а где выигрывает FastAPI.">
+<link rel="canonical" href="https://a1exai.ru/blog/aiohttp-vs-fastapi.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AioHTTP против FastAPI: когда что выбирать">
+<meta property="og:description" content="Оба — крепкие async-фреймворки Python, но решают разные задачи. Правило выбора из продакшена.">
+<meta property="og:url" content="https://a1exai.ru/blog/aiohttp-vs-fastapi.html">
+<meta property="og:image" content="https://a1exai.ru/og-image.jpg">
+<meta property="article:published_time" content="2025-03-15">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"AioHTTP против FastAPI: когда что выбирать","datePublished":"2025-03-15","author":{"@type":"Person","name":"Алексей Р","url":"https://a1exai.ru"},"keywords":"Python, Backend, AioHTTP, FastAPI","image":"https://a1exai.ru/og-image.jpg","mainEntityOfPage":"https://a1exai.ru/blog/aiohttp-vs-fastapi.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Статья</span>
+    <h1>AioHTTP против FastAPI: когда что выбирать</h1>
+    <div class="a-meta"><span class="cat">Python · Backend</span> · 15 марта 2025 · 4 мин</div>
+
+    <div class="cover gradient" style="height:180px;display:grid;place-items:center;background:radial-gradient(120% 120% at 80% 20%,rgba(255,125,84,.28),transparent 55%),linear-gradient(135deg,#161b2b,#0d1117)">
+      <span style="font-family:var(--disp);font-weight:800;font-size:44px;color:rgba(255,255,255,.16)">async def</span>
+    </div>
+
+    <p class="lead">Я запускал в продакшене сервисы и на AioHTTP, и на FastAPI. Их часто сравнивают, но настоящий вопрос не «что лучше», а <strong>«что подходит под вашу ситуацию»</strong>.</p>
+
+    <h2>AioHTTP: сырая мощь, полный контроль</h2>
+    <p>AioHTTP даёт низкоуровневый HTTP-сервер и клиент. Никакой магии. Роуты подключаешь вручную, парсинг запроса пишешь сам, каждую зависимость выбираешь сам. Это значит:</p>
+    <ul>
+      <li>Отлично для сервисов, где нужен жёсткий контроль над жизненным циклом запроса.</li>
+      <li>Здорово, когда строишь что-то, что не укладывается в типичный REST CRUD.</li>
+      <li>Никакой автоматической валидации — пишешь сам или берёшь свою библиотеку.</li>
+    </ul>
+
+    <h2>FastAPI: продуктивность и стандарты</h2>
+    <p>FastAPI построен на Starlette и Pydantic. Даёт автоматическую валидацию запросов, OpenAPI-документацию из коробки и чистый DI. Компромисс:</p>
+    <ul>
+      <li>Pydantic добавляет накладные расходы — заметно на очень высоконагруженных эндпоинтах.</li>
+      <li>«Магия» автовалидации может прятать баги, если не понимаешь, что происходит под капотом.</li>
+      <li>Отлично для команд и API, которые потребляют другие разработчики.</li>
+    </ul>
+
+    <h2>Моё правило</h2>
+    <p>Если у сервиса <strong>публичный API</strong> или его потребляет команда — берите FastAPI. Автодокументация и валидация экономят больше времени, чем стоят.</p>
+    <p>Если сервис <strong>внутренний</strong>, критичный к производительности или с необычными требованиями (много WebSocket, кастомные протоколы, стриминг) — AioHTTP даёт больше пространства.</p>
+    <p>Лучший фреймворк — тот, который ваша команда сможет дебажить в 2 часа ночи, не открывая документацию.</p>
+
+    <div class="tags"><span>Python</span><span>Backend</span><span>AioHTTP</span><span>FastAPI</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="../index.html#contact">Обсудить проект</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
