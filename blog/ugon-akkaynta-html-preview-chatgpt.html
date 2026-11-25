@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Угон аккаунта через HTML-превью в ChatGPT — a1exai</title>
+<meta name="description" content="Разбор атаки на HTML-артефакты ChatGPT, дошедшей до угона аккаунта. Почему рендеринг вывода модели превращает prompt injection в content injection и как это купировать.">
+<link rel="canonical" href="https://a1exai.ru/blog/ugon-akkaynta-html-preview-chatgpt.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Угон аккаунта через HTML-превью в ChatGPT">
+<meta property="og:description" content="Разбор атаки на HTML-артефакты ChatGPT, дошедшей до угона аккаунта. Почему рендеринг вывода модели превращает prompt injection в content injection и как это купировать.">
+<meta property="og:url" content="https://a1exai.ru/blog/ugon-akkaynta-html-preview-chatgpt.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/ugon-akkaynta-html-preview-chatgpt.jpg">
+<meta property="article:published_time" content="2026-11-07">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Угон аккаунта через HTML-превью в ChatGPT", "datePublished": "2026-11-07", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "Security, Prompt Injection, LLM, Web", "image": "https://a1exai.ru/img/blog/ugon-akkaynta-html-preview-chatgpt.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/ugon-akkaynta-html-preview-chatgpt.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Угон аккаунта через HTML-превью в ChatGPT</h1>
+    <div class="a-meta"><span class="cat">Security · Prompt Injection</span> · 7 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/ugon-akkaynta-html-preview-chatgpt.jpg" alt="Угон аккаунта через HTML-превью в ChatGPT"></div>
+
+    <p>Разобрал write-up Parameter Labs: атаковали artifacts, HTML-приложения в sandbox-превью. Дошло до угона аккаунта.</p>
+
+    <p>Урок шире этого бага. Рендеришь вывод модели, значит отдаёшь контент, за который она не отвечает. На него влияет всё, что модель успела прочитать: страница по ссылке, документ, ответ инструмента. Так prompt injection становится content injection.</p>
+
+    <p>Если генерируешь UI моделью:</p>
+
+    <ul>
+      <li>контент от модели на отдельный origin, без общих cookies и localStorage</li>
+      <li>iframe sandbox без allow-same-origin плюс строгий CSP</li>
+      <li>retrieval и tool results это input, а не инструкции</li>
+      <li>и заранее проверь, до чего модель может дотянуться</li>
+    </ul>
+
+    <p>Честно: формы валидируем тщательно, вывод модели шипим без проверок. Эта асимметрия и есть главная уязвимость. LLM output это user input, который набрал себя сам.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://www.parameter.ai/labs/we-found-a-gap-at-openai" target="_blank" rel="noopener">https://www.parameter.ai/labs/we-found-a-gap-at-openai</a></li>
+  <li><a href="https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/" target="_blank" rel="noopener">https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/</a></li>
+</ul>
+
+    <div class="tags"><span>Security</span><span>Prompt Injection</span><span>LLM</span><span>Web</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
