@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Агенту не нужны все 200 схем инструментов — a1exai</title>
+<meta name="description" content="Google выпустил Tool Retrieval для Gemini API: вместо всех схем модель получает только релевантные инструменты. Разбираю, как устроен retrieval для инструментов и когда он действительно нужен.">
+<link rel="canonical" href="https://a1exai.ru/blog/agent-tool-retrieval-gemini.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Агенту не нужны все 200 схем инструментов">
+<meta property="og:description" content="Google выпустил Tool Retrieval для Gemini API: вместо всех схем модель получает только релевантные инструменты. Разбираю, как устроен retrieval для инструментов и когда он действительно нужен.">
+<meta property="og:url" content="https://a1exai.ru/blog/agent-tool-retrieval-gemini.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/agent-tool-retrieval-gemini.jpg">
+<meta property="article:published_time" content="2026-11-23">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Агенту не нужны все 200 схем инструментов", "datePublished": "2026-11-23", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "LLM, Agents, Tools, RAG", "image": "https://a1exai.ru/img/blog/agent-tool-retrieval-gemini.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/agent-tool-retrieval-gemini.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Агенту не нужны все 200 схем инструментов</h1>
+    <div class="a-meta"><span class="cat">LLM · Agents</span> · 23 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/agent-tool-retrieval-gemini.jpg" alt="Агенту не нужны все 200 схем инструментов"></div>
+
+    <p>Google на этой неделе выпустил Tool Retrieval для Gemini API (preview): API сам выбирает нужное подмножество инструментов под запрос. Токенов меньше, модель не мечется между десятками одинаковых схем.</p>
+
+    <p>По сути это RAG для описаний инструментов, эмбеддинги давно решили ту же задачу у документов.</p>
+
+    <p>Паттерн переносится на любой API: описания в векторный индекс, на запрос достаёте top-k и прикрепляете только их. Нет нужного — ретрай с более широким поиском или весь список.</p>
+
+    <p>Два момента. Описания теперь документы для поиска, пишите их под запросы. И коллизии: два похожих инструмента в одном индексе, тихо победит не тот.</p>
+
+    <p>Моё правило: до ~20 инструментов шлите все, дальше это retrieval со своей оценкой. И главный выигрыш не токены, а точность: из 10 релевантных сбоит куда реже, чем из 200.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/" target="_blank" rel="noopener">https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</a></li>
+</ul>
+
+    <div class="tags"><span>LLM</span><span>Agents</span><span>Tools</span><span>RAG</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
