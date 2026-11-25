@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Порт curl на Rust: работа на боковой дорожке — a1exai</title>
+<meta name="description" content="Агентский порт curl на Rust важен не объёмом строк, а структурой: механическая работа идёт на боковую дорожку, между дорожками — верификация. Разбираю повторяемую схему параллельной работы.">
+<link rel="canonical" href="https://a1exai.ru/blog/curl-rust-port-parallel-tracks.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Порт curl на Rust: работа на боковой дорожке">
+<meta property="og:description" content="Агентский порт curl на Rust важен не объёмом строк, а структурой: механическая работа идёт на боковую дорожку, между дорожками — верификация. Разбираю повторяемую схему параллельной работы.">
+<meta property="og:url" content="https://a1exai.ru/blog/curl-rust-port-parallel-tracks.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/curl-rust-port-parallel-tracks.jpg">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Порт curl на Rust: работа на боковой дорожке", "datePublished": "2026-11-25", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "Rust, curl, Agents, Open Source", "image": "https://a1exai.ru/img/blog/curl-rust-port-parallel-tracks.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/curl-rust-port-parallel-tracks.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Порт curl на Rust: работа на боковой дорожке</h1>
+    <div class="a-meta"><span class="cat">Rust · curl</span> · 25 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/curl-rust-port-parallel-tracks.jpg" alt="Порт curl на Rust: работа на боковой дорожке"></div>
+
+    <p>185 000 строк C стали 340 000 строк Rust за три с небольшим недели. Параллельно проект смержил 300+ коммитов и закрыл около 200 багфиксов. Юзеры ничего не заметили.</p>
+
+    <p>Это Даниэль Стенберг про агентский порт curl, цитирует Саймон Уиллисон.</p>
+
+    <p>Цифры не столько про скорость, сколько про структуру. Две дорожки шли параллельно: агентская тащила объём без релизного давления, мейнлайн жил в обычном ритме.</p>
+
+    <p>По сути, схема повторяемая. Механическая проверяемая работа (порты, миграции, boilerplate) идёт на боковую дорожку. Между дорожками верификация: тесты, type check, ревью диффа. Что нельзя дёшево проверить, не параллелят. Сгенерённые строки становятся активом, только пройдя ревью и обычный коммит.</p>
+
+    <p>Честно говоря, 340к строк сами по себе не впечатляют. Интереснее, какие части проекта можно увести на боковую. Вот с них и начну.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://simonwillison.net/2026/Nov/18/daniel-stenberg/" target="_blank" rel="noopener">https://simonwillison.net/2026/Nov/18/daniel-stenberg/</a></li>
+</ul>
+
+    <div class="tags"><span>Rust</span><span>curl</span><span>Agents</span><span>Open Source</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
