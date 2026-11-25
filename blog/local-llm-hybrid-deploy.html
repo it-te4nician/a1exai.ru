@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Локальные LLM — уже не хобби, а вариант деплоя — a1exai</title>
+<meta name="description" content="llama.cpp v1.0.0, локальная 145B-модель и Foundation Models от Apple — три сигнала, что local LLM стал production-вариантом. Почему hybrid с первого дня лучше, чем выбор одной стороны.">
+<link rel="canonical" href="https://a1exai.ru/blog/local-llm-hybrid-deploy.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Локальные LLM — уже не хобби, а вариант деплоя">
+<meta property="og:description" content="llama.cpp v1.0.0, локальная 145B-модель и Foundation Models от Apple — три сигнала, что local LLM стал production-вариантом. Почему hybrid с первого дня лучше, чем выбор одной стороны.">
+<meta property="og:url" content="https://a1exai.ru/blog/local-llm-hybrid-deploy.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/local-llm-hybrid-deploy.jpg">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Локальные LLM — уже не хобби, а вариант деплоя", "datePublished": "2026-11-25", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "LLM, LocalLLM, Inference, Deployment", "image": "https://a1exai.ru/img/blog/local-llm-hybrid-deploy.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/local-llm-hybrid-deploy.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Локальные LLM — уже не хобби, а вариант деплоя</h1>
+    <div class="a-meta"><span class="cat">LLM · LocalLLM</span> · 25 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/local-llm-hybrid-deploy.jpg" alt="Локальные LLM — уже не хобби, а вариант деплоя"></div>
+
+    <p>Три сигнала за неделю: llama.cpp доехала до v1.0.0, Edge0 показала 145B-модель, которая работает локально, Apple выпустила Foundation Models для инференса на устройстве.</p>
+
+    <p>Короче, все трое об одном: держать модели у себя — уже вариант деплоя.</p>
+
+    <p>Local берёт периметром (для чувствительных данных это решает всё), фиксированной ценой вместо per-token и контролем над латентностью и rate limits.</p>
+
+    <p>API берёт качеством (frontier-модели всё ещё в облаке), плюс ноль железа и эластичность на пиках.</p>
+
+    <p>Ловушка — выбрать сторону для всего. Только local: слабые модели на сложных задачах. Только API: приватные данные уходят вендору и платишь за каждый чих.</p>
+
+    <p>Моё мнение: hybrid с первого дня. Local — чувствительное и простое в объёме, API — сложные 10%.</p>
+
+    <p>Лучше разложить нагрузку сейчас, чем это сделает следующий релиз.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://huggingface.co/blog/ggml-org/llama-cpp-v1" target="_blank" rel="noopener">https://huggingface.co/blog/ggml-org/llama-cpp-v1</a></li>
+  <li><a href="https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer" target="_blank" rel="noopener">https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer</a></li>
+  <li><a href="https://developer.apple.com/foundation-models-framework/" target="_blank" rel="noopener">https://developer.apple.com/foundation-models-framework/</a></li>
+</ul>
+
+    <div class="tags"><span>LLM</span><span>LocalLLM</span><span>Inference</span><span>Deployment</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
