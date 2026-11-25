@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Когда рой AI-агентов вредит: урок из эксперимента в Minecraft — a1exai</title>
+<meta name="description" content="Эксперимент с 50 AI-агентами в Minecraft показал: больше агентов не значит больше прогресса. Разбираю, когда рой оправдан и почему в продакшене выигрывает один агент.">
+<link rel="canonical" href="https://a1exai.ru/blog/ai-agent-swarm-coordination.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Когда рой AI-агентов вредит: урок из эксперимента в Minecraft">
+<meta property="og:description" content="Эксперимент с 50 AI-агентами в Minecraft показал: больше агентов не значит больше прогресса. Разбираю, когда рой оправдан и почему в продакшене выигрывает один агент.">
+<meta property="og:url" content="https://a1exai.ru/blog/ai-agent-swarm-coordination.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/ai-agent-swarm-coordination.png">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Когда рой AI-агентов вредит: урок из эксперимента в Minecraft", "datePublished": "2026-11-25", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "Agents, Multi-Agent, LLM, Architecture", "image": "https://a1exai.ru/img/blog/ai-agent-swarm-coordination.png", "mainEntityOfPage": "https://a1exai.ru/blog/ai-agent-swarm-coordination.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Когда рой AI-агентов вредит: урок из эксперимента в Minecraft</h1>
+    <div class="a-meta"><span class="cat">Agents · Multi-Agent</span> · 25 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/ai-agent-swarm-coordination.png" alt="Когда рой AI-агентов вредит: урок из эксперимента в Minecraft"></div>
+
+    <p>Команда с YC-бэкингом запустила рой агентов в Minecraft и Mindustry. Вместо разделения работы — переговоры, дублирование задач и взаимные блокировки. Больше агентов ≠ больше прогресса.</p>
+
+    <p>Координация в multi-agent дизайне — это цена: токены, задержки, новые точки отказа.</p>
+
+    <p>Рой оправдан, когда:<br>
+    🔹 задачи реально независимы и параллельны<br>
+    🔹 у каждого узкая, чётко определённая роль<br>
+    🔹 супервизор решает, кто с кем общается</p>
+
+    <p>Рой вредит, когда:<br>
+    ⚠️ нужен общий state или согласованный план<br>
+    ⚠️ каждое решение требует консенсуса<br>
+    ⚠️ роли пересекаются — работа дублируется</p>
+
+    <p>Мой дефолт: один агент, хороший набор инструментов и цикл plan-and-execute. Второй агент — только если задача доказанно не идёт последовательно.</p>
+
+    <p>Демо с роями впечатляют, но продакшен выигрывает меньшей координацией.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-agent-swarms-unleashed-in-minecraft-to-build-a-thriving-civilization-50-agent-teams-fail-after-falling-into-paralyzing-bureaucracy" target="_blank" rel="noopener">https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-agent-swarms-unleashed-in-minecraft-to-build-a-thriving-civilization-50-agent-teams-fail-after-falling-into-paralyzing-bureaucracy</a></li>
+  <li><a href="https://labs.ycombinator.com/projects/games/index.html" target="_blank" rel="noopener">https://labs.ycombinator.com/projects/games/index.html</a></li>
+</ul>
+
+    <div class="tags"><span>Agents</span><span>Multi-Agent</span><span>LLM</span><span>Architecture</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
