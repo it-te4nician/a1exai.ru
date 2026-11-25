@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Модели вердиктов: judgment выделяется из chat completion — a1exai</title>
+<meta name="description" content="Google, Jev и OpenAI выпустили decision API: yes/no, выбор варианта, оценка по рубрике. Почему judgment-задачи стоит уводить с chat completion на отдельный endpoint и логировать калибровку.">
+<link rel="canonical" href="https://a1exai.ru/blog/decision-api-judgment-endpoint.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Модели вердиктов: judgment выделяется из chat completion">
+<meta property="og:description" content="Google, Jev и OpenAI выпустили decision API: yes/no, выбор варианта, оценка по рубрике. Почему judgment-задачи стоит уводить с chat completion на отдельный endpoint и логировать калибровку.">
+<meta property="og:url" content="https://a1exai.ru/blog/decision-api-judgment-endpoint.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/decision-api-judgment-endpoint.jpg">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Модели вердиктов: judgment выделяется из chat completion", "datePublished": "2026-11-25", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "LLM, API, Evals, Pipelines", "image": "https://a1exai.ru/img/blog/decision-api-judgment-endpoint.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/decision-api-judgment-endpoint.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Модели вердиктов: judgment выделяется из chat completion</h1>
+    <div class="a-meta"><span class="cat">LLM · API</span> · 25 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/decision-api-judgment-endpoint.jpg" alt="Модели вердиктов: judgment выделяется из chat completion"></div>
+
+    <p>На этой неделе Google выпустил Gemini Decisions API и присоединился к Jev и OpenAI. Форма у всех почти одна: yes/no (у Jev это Noul), выбор из вариантов, оценка по рубрике.</p>
+
+    <p>Большая часть production-вызовов LLM не генерация: модерация, триаж, матчинг схем, оценка в evals. Это judgment, и гнать его через чатовую модель — парсить свободный текст и надеяться, что формат не поедет.</p>
+
+    <p>Cloudflare и TypeSafe AI уже показывают production-кейсы.</p>
+
+    <p>Что делать с пайплайном:</p>
+
+    <ul>
+      <li>если ответ — один из N вариантов или число, это decision, а не чат;</li>
+      <li>такие вызовы уходят на decision-endpoint, генерация остаётся для текста;</li>
+      <li>логируйте калибровку: 0.52 и 0.99 это разные yes.</li>
+    </ul>
+
+    <p>Честно: chat completion API расползается на generation и judgment. Пайплайны упрощаются, когда judgment перестаёт быть задачей prompt engineering.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://simonwillison.net/2026/Nov/11/gemini-decisions-api/" target="_blank" rel="noopener">https://simonwillison.net/2026/Nov/11/gemini-decisions-api/</a></li>
+  <li><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener">https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/</a></li>
+  <li><a href="https://latent.space/p/ainews-d-day-decision-models-day/" target="_blank" rel="noopener">https://latent.space/p/ainews-d-day-decision-models-day/</a></li>
+</ul>
+
+    <div class="tags"><span>LLM</span><span>API</span><span>Evals</span><span>Pipelines</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
