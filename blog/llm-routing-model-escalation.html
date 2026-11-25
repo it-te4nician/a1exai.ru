@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Точность Opus в 4 раза дешевле: LLM-роутинг вместо дорогой модели — a1exai</title>
+<meta name="description" content="Кейс Hightouch: дешёвая модель решает большинство кейсов и эскалирует сомнительные к Opus. Точность флагмана по цене маленькой модели — и подвох с неправильным маршрутом.">
+<link rel="canonical" href="https://a1exai.ru/blog/llm-routing-model-escalation.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Точность Opus в 4 раза дешевле: LLM-роутинг вместо дорогой модели">
+<meta property="og:description" content="Кейс Hightouch: дешёвая модель решает большинство кейсов и эскалирует сомнительные к Opus. Точность флагмана по цене маленькой модели — и подвох с неправильным маршрутом.">
+<meta property="og:url" content="https://a1exai.ru/blog/llm-routing-model-escalation.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/llm-routing-model-escalation.jpg">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Точность Opus в 4 раза дешевле: LLM-роутинг вместо дорогой модели", "datePublished": "2026-11-25", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "LLM, Agents, Routing, Cost Optimization", "image": "https://a1exai.ru/img/blog/llm-routing-model-escalation.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/llm-routing-model-escalation.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Точность Opus в 4 раза дешевле: LLM-роутинг вместо дорогой модели</h1>
+    <div class="a-meta"><span class="cat">LLM · Agents</span> · 25 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/llm-routing-model-escalation.jpg" alt="Точность Opus в 4 раза дешевле: LLM-роутинг вместо дорогой модели"></div>
+
+    <p>Кейс из разбора Hightouch про LLM-судей для identity resolution: дешёвая модель решает большинство кейсов сама, а сомнительные эскалирует к Opus. Итог: точность дорогой модели по цене, близкой к дешёвой.</p>
+
+    <p>По сути это routing из «Building Effective Agents» Anthropic: классифицируй вход и отправь профильному обработчику. Простое решает маленькая модель, тяжёлое уходит флагману, а триггер эскалации — неуверенность модели, не правило по ключевым словам.</p>
+
+    <p>Подвох там же: классификация должна быть точной и предсказуемой. Ошибся на сложном кейсе — получил дешёвый ответ и тихую потерю качества. Неправильный маршрут хуже дорогого.</p>
+
+    <p>С чего бы я начинал: гонять всё на дешёвой модели, логировать, где она сомневается или расходится со спот-проверками, и по этим данным строить эскалацию.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://hightouch.com/blog/llm-judges-identity-resolution" target="_blank" rel="noopener">https://hightouch.com/blog/llm-judges-identity-resolution</a></li>
+</ul>
+
+    <div class="tags"><span>LLM</span><span>Agents</span><span>Routing</span><span>Cost Optimization</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
