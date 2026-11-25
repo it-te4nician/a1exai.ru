@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поддельный Claude Code: троян в маркетплейсе VS Code — a1exai</title>
+<meta name="description" content="Поддельное расширение Claude Code оказалось трояном удалённого доступа: под угрозой исходники, git-credentials и API-токены. Почему расширения опаснее npm-пакетов и как снизить риск.">
+<link rel="canonical" href="https://a1exai.ru/blog/fake-claude-code-vscode-trojan.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Поддельный Claude Code: троян в маркетплейсе VS Code">
+<meta property="og:description" content="Поддельное расширение Claude Code оказалось трояном удалённого доступа: под угрозой исходники, git-credentials и API-токены. Почему расширения опаснее npm-пакетов и как снизить риск.">
+<meta property="og:url" content="https://a1exai.ru/blog/fake-claude-code-vscode-trojan.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/fake-claude-code-vscode-trojan.jpg">
+<meta property="article:published_time" content="2026-11-08">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Поддельный Claude Code: троян в маркетплейсе VS Code", "datePublished": "2026-11-08", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "Security, SupplyChain, VSCode, ClaudeCode", "image": "https://a1exai.ru/img/blog/fake-claude-code-vscode-trojan.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/fake-claude-code-vscode-trojan.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Поддельный Claude Code: троян в маркетплейсе VS Code</h1>
+    <div class="a-meta"><span class="cat">Security · SupplyChain</span> · 8 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/fake-claude-code-vscode-trojan.jpg" alt="Поддельный Claude Code: троян в маркетплейсе VS Code"></div>
+
+    <p>Все поставили его добровольно. Фейковый extension оформили как настоящий: имя, иконка, листинг. Внутри — троян удалённого доступа.</p>
+
+    <p>Для редактора это та же проблема, что npm-пакеты, только ставки выше. У расширения весь workspace и git-credentials, долгоживущие API-токены и shell через агента. Хватит одной установки: утекут исходники и накрутят API-счёт.</p>
+
+    <p>Что бы реально сделал:</p>
+
+    <ul>
+      <li>смотрю publisher ID, а не display name: имя и иконку подделать дёшево;</li>
+      <li>версии пиню и читаю release notes перед обновлением;</li>
+      <li>секреты держу вне workspace и ротирую AI-токены: украденный ключ тарифицируется за каждый токен.</li>
+    </ul>
+
+    <p>Supply chain теперь шире пакетного менеджера: это любой маркетплейс, которому доверяет редактор. Раз отдаю агентам shell-доступ, буду аудитить редактор как продакшен.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://phorion.io/blog/offical-claude-code-vsx-compromise/" target="_blank" rel="noopener">https://phorion.io/blog/offical-claude-code-vsx-compromise/</a></li>
+  <li><a href="https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2" target="_blank" rel="noopener">https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2</a></li>
+</ul>
+
+    <div class="tags"><span>Security</span><span>SupplyChain</span><span>VSCode</span><span>ClaudeCode</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
