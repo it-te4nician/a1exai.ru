@@ -477,11 +477,11 @@
             <span><span class="t">Резюме (PDF)</span><br><span class="s">Опыт и стек одним файлом</span></span></a>
         </div>
         <div class="cal">
-          <!-- Виджет Calendly -->
-          <div class="calendly-inline-widget" data-url="https://calendly.com/e1teck" style="min-width:320px;height:630px;"></div>
+          <!-- Виджет Callendar -->
+          <div data-callendar="wk_36JYMpoEfnh8AuYMzc8kP_X4"></div>
           <div class="cal-fallback"><div>
             <h3>Календарь встреч</h3>
-            <p>Виджет Calendly загрузится на реальном домене — здесь гость выберет свободный слот.</p>
+            <p>Виджет Callendar загрузится на реальном домене — здесь гость выберет свободный слот.</p>
           </div></div>
         </div>
       </div>
@@ -493,8 +493,7 @@
   <div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div>
 </footer>
 
-<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script src="https://callendar.ru/embed.js" data-widget="wk_36JYMpoEfnh8AuYMzc8kP_X4" async></script>
 <script>
   // ===== Parallax (мышь + скролл), с уважением к reduced-motion =====
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -704,8 +703,9 @@
   const hint=document.querySelector('.scroll-hint');
   if(hint) addEventListener('scroll',()=>{hint.style.opacity=scrollY>40?'0':'0.6';},{passive:true});
 
-  // Скрыть заглушку когда Calendly отрисован
-  new MutationObserver((m,o)=>{document.querySelectorAll('.calendly-inline-widget iframe').length&&(document.querySelector('.cal-fallback')?.remove(),o.disconnect());}).observe(document.body,{childList:true,subtree:true});
+  // Скрыть заглушку когда Callendar отрисован
+  (()=>{const done=()=>document.querySelector('[data-callendar] iframe')&&(document.querySelector('.cal-fallback')?.remove(),true);
+    if(!done()) new MutationObserver((m,o)=>{done()&&o.disconnect();}).observe(document.body,{childList:true,subtree:true});})();
 </script>
 
 <!-- ==================================================================
