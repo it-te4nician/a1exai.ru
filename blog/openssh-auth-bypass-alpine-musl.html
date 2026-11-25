@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auth bypass в OpenSSH на musl: пять верных решений сломались на стыке — a1exai</title>
+<meta name="description" content="CVE-2026-123158: на musl crypt() возвращает «*» для хэша длиннее 256 байт, и это совпало со значением key-only аккаунтов в /etc/shadow. Условия уязвимости, фиксы и урок о стыках.">
+<link rel="canonical" href="https://a1exai.ru/blog/openssh-auth-bypass-alpine-musl.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Auth bypass в OpenSSH на musl: пять верных решений сломались на стыке">
+<meta property="og:description" content="CVE-2026-123158: на musl crypt() возвращает «*» для хэша длиннее 256 байт, и это совпало со значением key-only аккаунтов в /etc/shadow. Условия уязвимости, фиксы и урок о стыках.">
+<meta property="og:url" content="https://a1exai.ru/blog/openssh-auth-bypass-alpine-musl.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/openssh-auth-bypass-alpine-musl.jpg">
+<meta property="article:published_time" content="2026-11-25">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Auth bypass в OpenSSH на musl: пять верных решений сломались на стыке", "datePublished": "2026-11-25", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "OpenSSH, Security, CVE, Alpine", "image": "https://a1exai.ru/img/blog/openssh-auth-bypass-alpine-musl.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/openssh-auth-bypass-alpine-musl.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Auth bypass в OpenSSH на musl: пять верных решений сломались на стыке</h1>
+    <div class="a-meta"><span class="cat">OpenSSH · Security</span> · 25 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/openssh-auth-bypass-alpine-musl.jpg" alt="Auth bypass в OpenSSH на musl: пять верных решений сломались на стыке"></div>
+
+    <p>CVE-2026-123158, раскрыли 5 ноября. Итог пяти отдельных решений 1980–2022 годов, каждое по-своему разумное.</p>
+
+    <p>На musl crypt() возвращает "*" для SHA-256/512-хэша длиннее 256 байт, а key-only аккаунты и так хранят "*" в /etc/shadow. По сути, строки совпали, и логин прошёл. Годится любой пароль ~300 символов.</p>
+
+    <p>Условия: musl-система (Alpine, OpenWrt, Buildroot, Yocto), sshd без PAM, PasswordAuthentication yes (дефолт) и аккаунт с "*" в shadow.</p>
+
+    <p>Фикс: OpenSSH 10.6p2, либо отключить парольный вход и проверить shadow и authorized_keys.</p>
+
+    <p>glibc-дистры, PAM и Alpine-контейнеры не задеты. Попытки эксплуатации пошли через 9 часов после раскрытия, атак не подтвердили. Патч первым делом.</p>
+
+    <p>Каждое решение было верным само по себе. Ломается на стыках — туда и направьте ревью и интеграционные тесты.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://www.bleepingcomputer.com/news/security/openssh-flaw-lets-attackers-log-into-password-disabled-linux-accounts/" target="_blank" rel="noopener">https://www.bleepingcomputer.com/news/security/openssh-flaw-lets-attackers-log-into-password-disabled-linux-accounts/</a></li>
+  <li><a href="https://www.helpnetsecurity.com/2026/11/06/openssh-sshole-cve-2026-123158-exploitation/" target="_blank" rel="noopener">https://www.helpnetsecurity.com/2026/11/06/openssh-sshole-cve-2026-123158-exploitation/</a></li>
+  <li><a href="https://www.tomshardware.com/tech-industry/cyber-security/combined-flaws-let-anyone-into-alpine-linux-and-other-distros-by-typing-anything-over-256-characters-as-a-password-emergency-fixes-for-openssh-and-musl-libc-issued-for-millions-of-systems-patch-immediately" target="_blank" rel="noopener">https://www.tomshardware.com/tech-industry/cyber-security/combined-flaws-let-anyone-into-alpine-linux-and-other-distros-by-typing-anything-over-256-characters-as-a-password-emergency-fixes-for-openssh-and-musl-libc-issued-for-millions-of-systems-patch-immediately</a></li>
+  <li><a href="https://cycode.com/blog/sshole-cve-2026-123158-openssh-alpine-linux-vulnerability/" target="_blank" rel="noopener">https://cycode.com/blog/sshole-cve-2026-123158-openssh-alpine-linux-vulnerability/</a></li>
+</ul>
+
+    <div class="tags"><span>OpenSSH</span><span>Security</span><span>CVE</span><span>Alpine</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
