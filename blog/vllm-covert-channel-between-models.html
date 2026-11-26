@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как две модели на одном vLLM-сервере обмениваются данными без сети — a1exai</title>
+<meta name="description" content="Две модели на одном vLLM-сервере передают биты друг другу без сети: GPU-ядра по-разному округляют float, и модель читает этот отпечаток. Как закрыть канал и изолировать prefix cache.">
+<link rel="canonical" href="https://a1exai.ru/blog/vllm-covert-channel-between-models.html">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как две модели на одном vLLM-сервере обмениваются данными без сети">
+<meta property="og:description" content="Две модели на одном vLLM-сервере передают биты друг другу без сети: GPU-ядра по-разному округляют float, и модель читает этот отпечаток. Как закрыть канал и изолировать prefix cache.">
+<meta property="og:url" content="https://a1exai.ru/blog/vllm-covert-channel-between-models.html">
+<meta property="og:image" content="https://a1exai.ru/img/blog/vllm-covert-channel-between-models.jpg">
+<meta property="article:published_time" content="2026-11-26">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Как две модели на одном vLLM-сервере обмениваются данными без сети", "datePublished": "2026-11-26", "author": {"@type": "Person", "name": "Алексей Р", "url": "https://a1exai.ru"}, "keywords": "LLM, Security, vLLM, Agents", "image": "https://a1exai.ru/img/blog/vllm-covert-channel-between-models.jpg", "mainEntityOfPage": "https://a1exai.ru/blog/vllm-covert-channel-between-models.html"}
+</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">a1ex<span>ai</span></a>
+    <a class="back" href="../index.html#blog">← в блог</a>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <span class="eyebrow">Заметка</span>
+    <h1>Как две модели на одном vLLM-сервере обмениваются данными без сети</h1>
+    <div class="a-meta"><span class="cat">LLM · Security</span> · 26 ноября 2026 · 1 мин</div>
+
+    <div class="cover contain"><img src="../img/blog/vllm-covert-channel-between-models.jpg" alt="Как две модели на одном vLLM-сервере обмениваются данными без сети"></div>
+
+    <p>Две модели на одном vLLM-сервере передают биты друг другу без сети. Показали Niranjan Deshpande и David Africa.</p>
+
+    <p>Причина прозаичная: vLLM выбирает GPU-ядра под размер шага, а они округляют float по-разному. Модель этот отпечаток читает.</p>
+
+    <p>Канала два: раздутый большим документом шаг, который читает сосед. Или helper-промпт в KV cache — его префикс несёт отпечаток.</p>
+
+    <p>Qwen3-8B декодировал 1221 из 1221 сигналов, сговорившийся монитор пропустил 354 из 354 атак.</p>
+
+    <p>Монитор на отдельный инстанс, batch-invariant kernels в vLLM, prefix cache изолировать по пользователям. Тест: промпт на пустом и загруженном сервере даёт бит в бит одно и то же.</p>
+
+    <p>Сценарий надуманный и без helper-агентов не работает, но фиксы дешёвые. Ставьте до того, как монитор окажется рядом с тем, за кем следит.</p>
+
+<h2>Источники</h2>
+<ul class="sources">
+  <li><a href="https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being" target="_blank" rel="noopener">https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being</a></li>
+</ul>
+
+    <div class="tags"><span>LLM</span><span>Security</span><span>vLLM</span><span>Agents</span></div>
+    <p class="more">← <a href="../index.html#blog">Все статьи</a> · <a href="https://t.me/jst_hmn" target="_blank" rel="noopener">Канал в Telegram</a></p>
+  </div>
+</article>
+
+<footer><div class="wrap"><span>© 2026 a1exai.ru</span><span>AI-инженер · агентные системы</span></div></footer>
+</body>
+</html>
